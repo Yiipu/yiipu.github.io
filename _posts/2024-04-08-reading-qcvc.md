@@ -3,6 +3,7 @@ title: 量子计算科普文章随记
 categories: [笔记]
 tags: [量子]
 description: 读 [Quantum computing for the very curious](https://quantum.country/qcvc) 随记.
+math: true
 ---
 
 阅读原文: [Quantum computing for the very curious](https://quantum.country/qcvc)
@@ -34,6 +35,7 @@ Is there a (single) universal computing device which can efficiently simulate an
 For the most part our memories work in a haphazard manner. We read or hear something interesting, and hope we remember it in future. Spaced-repetition testing makes memory into a choice.
 
 > 基于 spaced-repetition 的软件有很多, 比如不背单词/space. 除了单词以外, 当你想自己写一些记忆卡片时, 可以试试 Obsidian 的 [Spaced Repetition](obsidian://show-plugin?id=obsidian-spaced-repetition) 插件.
+
 ### Connecting qubits to bits: the computational basis states
 
 $\left | 0 \right \rangle := \begin{bmatrix}1\\0\end{bmatrix}$
@@ -46,7 +48,7 @@ Fields-medal winning mathematician)
 
 ### How to approach this essay?
 
-%% 略 %%
+略
 
 ### General states of a qubit
 

@@ -2,14 +2,27 @@
 title: Next.js 全栈开发踩坑记
 categories:
   - 开发
+  - Web
 tags:
   - NodeJS
   - ReactJS
   - NextJS
   - front-end
   - back-end
-description:
+description: 用 next.js 开发了一个简单的网站, 涉及到 数据库 \ socket \ RESTful API 等等, 分享以下踩过的坑罢.
 ---
+
+欢迎查看 [源码](https://github.com/Yiipu/Checkdown) 以及 [网站](https://checkdown.azurewebsites.net/).
+
+如果不想注册, 可以使用下面的示例账户.
+
+```
+user@example.com
+```
+```
+Abc123456
+```
+
 ## 数据获取
 
 > Whenever possible, we recommend fetching data on the server with Server Components. 
@@ -35,6 +48,7 @@ description:
 我的应用是一个 markdown 预览器，因为我希望在服务端将 markdown 转化为 jsx，因此文件的获取必须在服务端且数据首先到达服务端. 
 
 ## 踩坑
+
 ### \<Link\>  preload 导致用户意外登出
 
 [prefetch](https://nextjs.org/docs/app/api-reference/components/link#prefetch) 是 \<Link\> 组件的默认行为. 注意在不想预加载的标签 (如 `/api/auth/logout` 🙂) 手动关闭预加载:
