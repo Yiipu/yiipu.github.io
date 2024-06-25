@@ -1,6 +1,5 @@
 ---
 title: 用 C++ 实现一个高精度整数类
-author: yiipu
 date: 2024-03-14 20:00:00 +0800
 categories: [算法, 数据结构]
 tags: [cpp, 重载]

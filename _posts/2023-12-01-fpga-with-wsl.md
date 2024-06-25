@@ -1,6 +1,5 @@
 ---
 title: 在 WSL 下进行 FPGA 开发
-author: yiipu
 date: 2023-12-01 12:00:00 +0800
 categories: [环境配置, 虚拟机, WSL]
 tags: [FPGA]

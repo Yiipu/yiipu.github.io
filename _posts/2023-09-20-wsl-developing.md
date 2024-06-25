@@ -1,6 +1,5 @@
 ---
 title: 使用 WSL 进行编程
-author: yiipu
 date: 2023-09-20 12:00:00 +0800
 last_modified_at: 2023-09-20 12:00:00 +0800
 categories: [环境配置, 虚拟机, WSL]

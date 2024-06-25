@@ -1,6 +1,5 @@
 ---
 title: Git 团队协作指南
-author: yiipu
 date: 2023-10-26 12:00:00 +0800
 categories: [开发, 项目管理]
 tags: [Git]
