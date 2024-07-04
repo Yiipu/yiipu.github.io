@@ -38,9 +38,13 @@ For the most part our memories work in a haphazard manner. We read or hear somet
 
 ### Connecting qubits to bits: the computational basis states
 
-$\left | 0 \right \rangle := \begin{bmatrix}1\\0\end{bmatrix}$
+```math
+\left | 0 \right \rangle := \begin{bmatrix}1\\0\end{bmatrix}
+```
+```math
+\left | 1 \right \rangle := \begin{bmatrix}0\\1\end{bmatrix}
+```
 
-$\left | 1 \right \rangle := \begin{bmatrix}0\\1\end{bmatrix}$
 ### How to use (or not use!) the questions
 
 Mathematics is a process of staring hard enough with enough perseverance at the fog of muddle and confusion to eventually break through to improved clarity. (William Thurston,
@@ -60,8 +64,6 @@ the quantum state of a qubit is a vector of unit length in a two-dimensional com
 > 传统的 bit 位只有两种状态，而且是确定的。那么量子位呢？量子位的状态是一个向量，还是概率？在尝试下定义之前，作者建议，还是先上手把玩一下吧。
 
 So the strategy we’re taking is to start with the mathematics of quantum computing – we’ll keep getting familiar with qubits and the quantum state, and developing the consequences. Doing that is how we’ll build up intuition, and will give us the chops needed to come back and think harder about the meaning of the quantum state.
-
-
 
 ## Part II: Introducing quantum logic gates
 
