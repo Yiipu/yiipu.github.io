@@ -47,6 +47,41 @@ Abc123456
 
 我的应用是一个 markdown 预览器，因为我希望在服务端将 markdown 转化为 jsx，因此文件的获取必须在服务端且数据首先到达服务端. 
 
+### 数据库
+
+数据库最好用单独的模块来管理, 我的应用中, 数据库封装在文件 `pool.js` 中, 并暴露对象 `pool` 和 方法 `handleTransaction(fn)` .
+
+`pool` 是 `mysql2` 提供的 mySQL 的连接池, 当某个函数只需要进行不超过 2 次数据库查询时, 就使用 `pool` 的 `execute(sql,param)` 方法.
+
+`handleTransaction(fn)` 是事务操作的抽象逻辑, 包含了错误处理和回滚, 其接收一个函数作为参数, 这个函数的参数是一个数据库连接 `connection` .
+
+```js
+/**
+ * Handles a database transaction.
+ * @param {Function} fn - A function that accepts a connection as its only argument
+ * @throws {Error} Throws an error if getting a connection fails or if the
+ *                 transaction fails (either during the execution of `fn` or
+ *                 during commit).
+ */
+async function handleTransaction(fn) {
+  const connection = await pool.getConnection()
+    .catch((err) => {
+      console.error(err);
+      throw new Error("Failed to get connetion");
+    });
+  try {
+    await connection.beginTransaction();
+    await fn(connection);
+    await connection.commit();
+  } catch (error) {
+    await connection.rollback();
+    console.error(error);
+    throw new Error("Transaction failed");
+  } finally {
+    connection.release();
+  }
+}
+```
 ## 踩坑
 
 ### \<Link\>  preload 导致用户意外登出
