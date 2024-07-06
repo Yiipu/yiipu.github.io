@@ -2,7 +2,9 @@
 title: 使用 WSL 进行编程
 date: 2023-09-20 12:00:00 +0800
 last_modified_at: 2023-09-20 12:00:00 +0800
-categories: [环境配置, 虚拟机, WSL]
+categories:
+  - 环境配置
+  - 虚拟机
 description: 在 WSL 编程的一些tips
 ---
 

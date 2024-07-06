@@ -1,7 +1,10 @@
 ---
 title: 量子计算科普文章随记
-categories: [笔记]
-tags: [量子]
+categories:
+  - 笔记
+  - 科普
+tags:
+  - 量子
 description: 读 [Quantum computing for the very curious](https://quantum.country/qcvc) 随记.
 math: true
 ---

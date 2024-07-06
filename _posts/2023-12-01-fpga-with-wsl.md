@@ -1,8 +1,11 @@
 ---
 title: 在 WSL 下进行 FPGA 开发
 date: 2023-12-01 12:00:00 +0800
-categories: [环境配置, 虚拟机, WSL]
-tags: [FPGA]
+categories:
+  - 环境配置
+  - 虚拟机
+tags:
+  - FPGA
 toc: true
 description: 本指南介绍如何在 WSL 下的 Linux 发行版进行 FPGA 开发
 ---
