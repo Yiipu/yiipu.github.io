@@ -19,7 +19,7 @@ title: Yiipu's Blog # the main title
 tagline: 基本无害 # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
-  A static blog site built with Jekyll and GitHub Pages.
+  分享我的学习笔记和实践经验🤗
 
 # Fill in the protocol & hostname for your site.
 # e.g. 'https://username.github.io', note that it does not end with a '/'.
@@ -46,7 +46,7 @@ social:
 # Site Verification Settings
 webmaster_verifications:
   google: # fill in your Google verification code
-  bing: # fill in your Bing verification code
+  bing: 3B93D773BB0B654A332E00C806385982
   alexa: # fill in your Alexa verification code
   yandex: # fill in your Yandex verification code
   baidu: # fill in your Baidu verification code
@@ -92,7 +92,7 @@ theme_mode: # [light | dark]
 # will be added to all media resources (site avatar, posts' images, audio and video files) paths starting with '/'
 #
 # e.g. 'https://cdn.com'
-cdn: http://117.72.64.190:40027/i
+cdn: 'http://117.72.64.190:40027/i'
 
 # the avatar on sidebar, support local or CORS resources
 avatar: "https://avatars.githubusercontent.com/u/112836925?s=400&v=4"
