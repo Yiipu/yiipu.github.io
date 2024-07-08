@@ -1,27 +1,13 @@
 ---
 icon: fas fa-info-circle
 order: 4
-image:
-  path: /2024/07/07/668a87d961beb.gif
-  alt: stupid gif
 ---
-<style>
-    .header{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-</style>
+<h2>Hi 🤗 | 欢迎浏览我的博客</h2>
 
-<div class="header">
-	<div>
-		<h2>Opal Kim</h2>
-		<p><a href="https://www.hust.edu.cn/" alt="HUST">HUST</a> - CS</p>
-	</div>
-	<img src="http://117.72.64.190:40027/i/2024/05/23/664ec854e8797.jpg" alt="animewattson.jpg" title="animewattson.jpg" width="200"/>
-</div>
+我是 [HUST](https://hust.edu.cn) CS 学院的本科生, 喜欢科幻🐬, 编程👨‍💻和猫猫🐱. 我会在这个博客分享一些学习笔记, 实践经验和其他有趣的东西.  
 
+> 文章可能有误，请注意辨别🧐! 如果你发现了错误, 欢迎在文章底部留下评论, 或以其他方式[联系我](#contact). 
 
-## Opal Kim
+<h2 id="contact">Contact ✉ | 联系方式</h2>
 
-![animewattson](/2024/05/23/664ec854e8797.jpg){: width="1038" height="1092" .w-50 .right}[HUST](https://www.hust.edu.cn/) - CS
+你可以在页面的 Tab 栏底部找到我的联系方式.
