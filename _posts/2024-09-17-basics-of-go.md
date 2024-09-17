@@ -35,7 +35,7 @@ image:
 - 包级别只能使用声明， 且不允许 `:=`。
 - Go 语言不存在隐式类型转换。
 
-```Go
+```go
 // 变量块声明
 var (
 	x int = 1
@@ -91,7 +91,7 @@ j := i // 错误
 
 ### 闭包
 
-```Go
+```go
 func adder() func(int) int {
 	sum := 0
 	defer func() { sum++ }()
@@ -157,7 +157,7 @@ Go 没有类，但存在一种特殊的函数，声明时绑定一个`接收者`
 
 这种省略只出现在这里，在类型包装到接口里时，类型必须与接口的接收者对应。
 
-```Go
+```go
 type rot13Reader struct {
 	r io.Reader
 }
