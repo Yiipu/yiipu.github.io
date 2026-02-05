@@ -28,3 +28,5 @@ assets/js/dist
 .ruby-version
 /.obsidian
 /.trash
+/scripts
+/previews
