@@ -1,7 +1,7 @@
 ---
 title: "在AWS ECS部署Clawdbot并配置Qwen+Telegram+Brave搜索"
-date: 2025-02-05 15:00:00 +0800
-last_modified_at: 2025-02-05 15:00:00 +0800
+date: 2026-02-06 14:19:00 +0800
+last_modified_at: 2026-02-06 14:19:00 +0800
 categories:
   - 环境配置
   - AWS
