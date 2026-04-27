@@ -25,6 +25,9 @@ package-lock.json
 _sass/dist
 assets/js/dist
 
+CLAUDE.md
+.claude
+.DS_Store
 .ruby-version
 /.obsidian
 /.trash
