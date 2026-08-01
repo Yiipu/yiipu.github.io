@@ -1,8 +1,8 @@
 ---
 title: Reflect Open 仓库分析报告
 date: 2026-07-29 14:00:00 +0800
-last_modified_at: 2026-07-29 14:00:00 +0800
-categories: [技术分析, 开源]
+last_modified_at: 2026-08-01 16:00:00 +0800
+categories: [技术分析, 开源, 笔记应用]
 description: 对 Reflect Open —— 一款本地优先的纯 Markdown 笔记应用（面向 Mac 和 iOS，支持 BYO-key AI 功能）的开源仓库分析报告
 ---
 
