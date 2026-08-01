@@ -3,7 +3,7 @@ title: Agentmemory 仓库分析报告
 date: 2026-08-01 16:00:00 +0800
 last_modified_at: 2026-08-01 16:00:00 +0800
 categories: [技术分析, 开源, Agent记忆]
-description: 对 Agentmemory — 一款面向 AI 编程 agent 的自托管记忆数据库的开源仓库分析报告
+description: 对 Agentmemory — 面向 AI 编程 agent 的自托管记忆数据库的开源仓库分析报告
 ---
 
 ## 一句话摘要
