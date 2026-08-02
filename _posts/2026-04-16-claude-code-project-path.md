@@ -1,12 +1,14 @@
 ---
-title: "Claude Code 记忆系统路径关联风险"
+title: Claude Code 记忆系统路径关联风险
 date: 2026-04-16 16:21:00 +0800
 last_modified_at: 2026-04-16 16:21:00 +0800
 categories:
-  - AI Agents
+  - AI
+  - Coding Agent
 tags:
-  - Claude Code
-description: "Claude Code 在非 ASCII 字符的项目路径下可能混淆记忆"
+  - ClaudeCode
+  - bug
+description: Claude Code 在非 ASCII 字符的项目路径下可能混淆记忆
 ---
 
 ## 问题概述

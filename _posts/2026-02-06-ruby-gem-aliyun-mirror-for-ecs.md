@@ -1,21 +1,16 @@
 ---
-title: "阿里云ECS配置Ruby Gem镜像源最佳实践"
+title: 阿里云ECS配置Ruby Gem镜像源
 date: 2026-02-06 16:21:00 +0800
 last_modified_at: 2026-02-06 16:21:00 +0800
 categories:
   - 环境配置
-  - 阿里云
-  - Ruby
+  - ECS
 tags:
-  - ruby gems
-  - 阿里云ecs
+  - Ruby
+  - ECS
   - 镜像源
-  - 性能优化
-  - vpc网络
-description: "详细介绍在阿里云ECS实例上配置Ruby Gem镜像源的最佳实践，包括使用阿里云官方镜像源避免跨云厂商访问问题"
+description: 详细介绍在阿里云ECS实例上配置Ruby Gem镜像源的最佳实践，包括使用阿里云官方镜像源避免跨云厂商访问问题
 ---
-
-# 阿里云ECS配置Ruby Gem镜像源最佳实践
 
 ## 概述
 

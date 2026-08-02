@@ -2,12 +2,11 @@
 title: Go 语言初见
 categories:
   - 笔记
-  - 语言
 tags:
-  - go
+  - Go
 description: A Tour of Go 的学习笔记。部分练习题上传到了 gist
-math: 
-mermaid: 
+math:
+mermaid:
 image:
 ---
 [A Tour of Go](https://go.dev/tour/welcome/2) 的学习笔记。部分练习题上传到了 [gist](https://gist.github.com/Yiipu/9cd19f251152c2649ab9f1604f2e52e3)。

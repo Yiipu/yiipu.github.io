@@ -1,8 +1,14 @@
 ---
-title: "记一次 agentmemory embedding 故障：8 次 hack 全败，一次 GitHub 搜索解决"
+title: 记一次 agentmemory embedding 故障：8 次 hack 全败，一次 GitHub 搜索解决
 date: 2026-08-01 18:00:00 +0800
 last_modified_at: 2026-08-01 18:00:00 +0800
-categories: [AI, Agent]
+categories:
+  - AI
+  - 记忆系统
+tags:
+  - agentmemory
+  - bug
+  - prompt
 description: agent 基础设施出问题时，本能反应是 hack 源码、接旁路。但这个本能是错的。
 ---
 

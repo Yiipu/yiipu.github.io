@@ -1,11 +1,7 @@
 ---
 title: Next.js 全栈开发踩坑记
-categories:
-  - 开发
-  - Web
-tags:
-  - NextJS
-  - 全栈
+categories: [开发, Web]
+tags: [NextJS, 全栈]
 description: 用 next.js 开发了一个简单的网站, 涉及到 数据库 \ socket \ RESTful API 等等, 分享以下踩过的坑罢.
 mermaid: true
 ---

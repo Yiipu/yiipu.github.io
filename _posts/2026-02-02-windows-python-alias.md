@@ -2,8 +2,8 @@
 layout: post
 title: "Windows 终端运行 python 打开 MS Store 的解决方法"
 date: 2026-02-02
-categories: 环境配置 Python
-tags: Windows Python 环境变量
+categories: [环境配置, Windows]
+tags: [Windows, Python, 环境变量]
 ---
 
 ## 现象 

@@ -2,7 +2,12 @@
 title: Hermes Agent 启动加速：GFW 环境从 37 秒到 7 秒
 date: 2026-07-30 00:30:00 +0800
 last_modified_at: 2026-07-30 00:30:00 +0800
-categories: [工具, Hermes]
+categories:
+  - AI
+  - Agent
+tags:
+  - Hermes
+  - 性能优化
 description: 在国内网络环境下，Hermes Agent 每次启动耗时 37 秒，排查发现是两个网络超时导致，修复后降至 7 秒。
 ---
 

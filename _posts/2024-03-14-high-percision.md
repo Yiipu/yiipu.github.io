@@ -1,8 +1,11 @@
 ---
 title: 用 C++ 实现一个高精度整数类
 date: 2024-03-14 20:00:00 +0800
-categories: [算法, 数据结构]
-tags: [cpp, 重载]
+categories:
+  - 算法
+  - 数据结构
+tags:
+  - cpp
 math: true
 description: 本文介绍高精度**正整数**的 C++ 类的实现，利用了 C++ 的符号重载特性，使用倒序压位存储的数组作为数据结构。
 ---

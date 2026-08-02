@@ -1,22 +1,16 @@
 ---
-title: "在AWS ECS部署Clawdbot并配置Qwen+Telegram+Brave搜索"
+title: 在AWS ECS部署Clawdbot并配置Qwen+Telegram+Brave搜索
 date: 2026-02-06 14:19:00 +0800
 last_modified_at: 2026-02-06 14:19:00 +0800
 categories:
   - 环境配置
-  - AWS
-  - Chatbot
+  - ECS
 tags:
-  - clawdbot
-  - aws ecs
-  - qwen
-  - telegram
-  - brave search
-  - docker
-description: "详细教程介绍如何在AWS ECS上部署Clawdbot机器人，并配置Qwen模型、Telegram频道和Brave搜索功能"
+  - ECS
+  - Docker
+  - 部署
+description: 详细教程介绍如何在AWS ECS上部署Clawdbot机器人，并配置Qwen模型、Telegram频道和Brave搜索功能
 ---
-
-# 在AWS ECS部署Clawdbot并配置Qwen+Telegram+Brave搜索
 
 ## 概述
 

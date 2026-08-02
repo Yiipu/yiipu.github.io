@@ -1,8 +1,10 @@
 ---
 title: Git 团队协作指南
 date: 2023-10-26 12:00:00 +0800
-categories: [开发, 项目管理]
-tags: [Git]
+categories:
+  - 开发
+  - Git
+tags:
 mermaid: true
 description: 如何在团队项目中使用 git
 ---
