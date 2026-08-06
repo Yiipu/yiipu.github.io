@@ -1,5 +1,5 @@
 ---
-title: NousResearch/hermes-agent 项目分析报告
+title: NousResearch/hermes-agent 仓库分析报告
 date: 2026-08-02 14:00:00 +0800
 categories:
   - AI
