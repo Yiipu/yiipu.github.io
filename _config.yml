@@ -35,7 +35,7 @@ social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
   name: Opal Kim
-  email: opal.kim@icloud.com # change to your email address
+  email: opalkim@icloud.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
     - https://github.com/yiipu # change to your github homepage
@@ -92,7 +92,7 @@ theme_mode: # [light | dark]
 # will be added to all media resources (site avatar, posts' images, audio and video files) paths starting with '/'
 #
 # e.g. 'https://cdn.com'
-cdn: 'http://117.72.64.190:40027/i'
+# cdn: 'http://117.72.64.190:40027/i'
 
 # the avatar on sidebar, support local or CORS resources
 avatar: "https://avatars.githubusercontent.com/u/112836925?s=400&v=4"
