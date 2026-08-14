@@ -9,8 +9,6 @@ tags:
 description: iii 是一个 Rust 编写的实时后端编排引擎，将后端复杂性降维到 Worker/Function/Trigger 三个原语。18.5K star，引擎用 ELv2，SDK 用 Apache 2.0，当前处于密集 prerelease 迭代期。
 ---
 
-# iii-hq/iii 仓库分析报告
-
 ## 一句话摘要
 
 iii 是一个用 Rust 编写的实时后端编排引擎，将后端系统的复杂性降维到三个原语（Worker / Function / Trigger），让"添加一个能力"等同于"安装一个运行中的服务"。
