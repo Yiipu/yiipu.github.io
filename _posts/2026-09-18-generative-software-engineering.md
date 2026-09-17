@@ -589,8 +589,8 @@ Jevons 悖论预言：生产率上升反而增加（而不是减少）资源消�
 [^7]: M. M. Lehman，《Programs, Life Cycles, and Laws of Software Evolution》，Proceedings of the IEEE 68(9)，1980。
 [^8]: W. Cunningham，《The WyCash Portfolio Management System》，OOPSLA '92 Addendum（"技术债"隐喻出处），1992。 <https://en.wikipedia.org/wiki/Technical_debt>
 [^9]: A. Karpathy，《Software 2.0》，Medium，2017。 <https://karpathy.medium.com/software-2-0-a64152b37c35>
-[^10]: R. Sutton，《The Bitter Lesson》，2019。 <http://www.incompleteideas.net/IncIdeas/BitterLesson.html>
-[^11]: M. E. Conway，《How Do Committees Invent?》，Datamation，1968。 <http://www.melconway.com/Home/Committees_Paper.html>
+[^10]: R. Sutton，《The Bitter Lesson》，2019。 <https://www.incompleteideas.net/IncIdeas/BitterLesson.html>
+[^11]: M. E. Conway，《How Do Committees Invent?》，Datamation，1968。 <https://www.melconway.com/Home/Committees_Paper.html>
 [^12]: S. Peng, E. Kalliamvakou, P. Cihon, M. Demirer，《The Impact of AI on Developer Productivity: Evidence from GitHub Copilot》，arXiv:2302.06590，2023。 <https://arxiv.org/abs/2302.06590>
 [^13]: J. Becker, N. Rush, E. Barnes, D. Rein，《The Impact of Generative AI on Experienced Open-Source Developer Productivity》，METR，2025。 <https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/>
 [^14]: Z. Cui, W. Wang, C. Huang, R. Jia, S. Athey, G. Imbens 等，《The Effects of Generative AI on High-Skilled Work: Evidence from Three Field Experiments with Software Developers》，2025。
@@ -626,7 +626,7 @@ Jevons 悖论预言：生产率上升反而增加（而不是减少）资源消�
 [^44]: SignalFire，《State of Talent Report 2025》（大型科技公司初级岗位招聘收缩）。
 [^45]: S. Barke, M. James, N. D. Stein 等，《Grounded Copilot: How Programmers Interact with Code-Generating Models》（探索／加速双模式），OOPSLA 2023。
 [^46]: A. Karpathy，《Software is Changing Again》（"Software 3.0"），YC 演讲与文集，2025。
-[^47]: A. Solar-Lezama，《Program Synthesis by Sketching》，MIT 博士论文，2008。 <http://people.csail.mit.edu/asolar/thesis.pdf>
+[^47]: A. Solar-Lezama，《Program Synthesis by Sketching》，MIT 博士论文，2008。 <https://people.csail.mit.edu/asolar/thesis.pdf>
 [^48]: B. Romera-Paredes 等，《Mathematical Discoveries from Program Search with Large Language Models》（FunSearch），Nature，2024。 <https://www.nature.com/articles/s41586-023-06924-6>
 [^49]: DeepMind，《AlphaEvolve: A Gemini-Powered Coding Agent for Designing Advanced Algorithms》，2025。 <https://deepmind.google/discover/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/>
 [^50]: N. Brownlee, D. Winter, R. Marinescu, N. Walkinshaw，《CodaMosa: Escaping Coverage Plateaus in Test Generation with Pre-trained Large Language Models》，ICSE 2023。
