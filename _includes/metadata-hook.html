@@ -1,0 +1,9 @@
+<!-- ECharts support (adapted from community pattern: linsnotes Chart.js integration
+     + al-folio echarts-setup). Loads library + renderer only on pages that use it. -->
+{% if page.chart or page.charts %}
+<script>
+window.chartConfig = {% if page.charts %}{{ page.charts | jsonify }}{% else %}[{{ page.chart | jsonify }}]{% endif %};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<script src="/assets/js/echarts-renderer.js" defer></script>
+{% endif %}
