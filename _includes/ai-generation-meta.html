@@ -1,0 +1,32 @@
+{% if page.ai %}
+{% assign ai_model = page.ai.model | default: '' | strip %}
+{% assign ai_prompt = page.ai.prompt | default: '' | strip %}
+{% assign ai_session_url = page.ai.session_url | default: '' | strip %}
+{% if ai_model != empty or ai_prompt != empty or ai_session_url != empty %}
+<details class="ai-generation-meta">
+  <summary>AI 生成信息</summary>
+
+  {% if ai_model != empty %}
+  <div class="ai-generation-meta__model">
+    <strong>模型</strong>
+    <code>{{ page.ai.model | escape }}</code>
+  </div>
+  {% endif %}
+
+  {% if ai_session_url != empty %}
+  <div class="ai-generation-meta__conversation">
+    <strong>生成会话</strong>
+    <a href="{{ page.ai.session_url | escape }}" target="_blank" rel="noopener noreferrer">查看原始会话 ↗</a>
+  </div>
+  {% endif %}
+
+  {% if ai_prompt != empty %}
+  <div class="ai-generation-meta__prompt">
+    <div class="language-text highlighter-rouge" file="Prompt">
+      <div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-code"><pre>{{ page.ai.prompt | escape }}</pre></td></tr></tbody></table></code></div>
+    </div>
+  </div>
+  {% endif %}
+</details>
+{% endif %}
+{% endif %}

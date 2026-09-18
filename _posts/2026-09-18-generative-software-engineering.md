@@ -1,187 +1,272 @@
 ---
 title: 生成式软件工程：知识地图与核心命题
-description: 《生成式软件工程》课程设计备忘录：课程地图、核心命题、值得思考的问题、经典思想对照、阅读路线与设计判断。
+description: 当构造近乎免费，验证、信任与注意力成为新的稀缺。这份备忘录把研究文献、工业报告与一线论战压缩成一套可教学的知识结构：一张课程地图、十三个命题、一组没有简单答案的问题、经典思想的对照变化、一条阅读路线，以及最后的课程设计判断。
 date: 2026-09-18 01:00:00 +0800
-categories: [AI, 软件工程]
-tags: [生成式AI, 课程设计, 知识地图]
+categories:
+  - AI
+  - Coding Agent
+tags:
+  - AI生成
+ai:
+  model: z-ai/glm-5.3
+  session_url: https://share.traecontent.cn/share/CB_67JP2XA3XDL
+  prompt: |
+    你是一名计算机科学教授，研究方向横跨软件工程、编程语言、AI/ML 与人机交互。你准备开设一门新的高年级本科生/研究生课程：
+
+    《生成式软件工程（Generative Software Engineering）》
+
+    这里的“生成式软件工程”不是“如何使用某个 AI 编程工具”，而是研究：
+
+    当代码、测试、文档、设计、调试、代码审查乃至部分工程决策都可以由生成模型参与完成时，软件工程这门学科发生了什么变化？哪些经典思想依然成立，哪些需要重新理解，又出现了哪些新的核心问题？
+
+    请先进行充分调研，再进行知识综合。
+
+    不要试图生成一整套完整课程材料，也不要按照“第一课讲稿”的方式写成泛泛的科普文章。我的目标是用较低的阅读成本，获得这个领域最重要的洞见、知识结构、核心问题和学习方向。
+
+    请输出以下内容：
+
+    1. 课程地图（Course Map）
+
+    如果只能用一张知识地图描述“生成式软件工程”，这张地图应该包含什么？
+
+    将课程压缩成约 6–10 个核心模块。
+
+    对每个模块说明：
+
+    * 它研究的核心问题是什么？
+    * 为什么这个问题在生成式 AI 出现后变得重要？
+    * 它与经典软件工程有什么继承或冲突？
+    * 最值得学生理解的 1–3 个概念是什么？
+
+    重点不是安排“第几周讲什么”，而是建立这个领域的知识结构。
+
+    1. 核心命题（Core Ideas）
+
+    提出 8–15 个你认为学生学完这门课后应该真正记住的命题。
+
+    这些命题应该具有一定的解释力和迁移能力，而不是技巧或工具使用说明。
+
+    例如，避免：
+
+    “应该学会使用 AI IDE。”
+
+    更希望看到类似：
+
+    “当代码生成的边际成本趋近于零时，验证生成代码的成本可能成为软件开发的新瓶颈。”
+
+    对于每个命题：
+
+    2. 清晰陈述命题；
+    3. 解释它为什么重要；
+    4. 给出一个具体的软件工程例子；
+    5. 指出它是已有软件工程思想的延伸，还是生成式 AI 带来的新问题；
+    6. 如果这个命题目前仍存在争议，说明争议在哪里。
+
+    7. 最值得思考的问题（Questions Worth Thinking About）
+
+    给出约 10 个值得一个 CS 学生、研究者或资深工程师反复思考的问题。
+
+    这些问题应该没有简单答案，并能够揭示生成式软件工程真正困难的部分。
+
+    例如：
+
+    * 如果生成代码越来越便宜，“写代码”还会是软件工程的核心活动吗？
+    * 当生成速度远高于人类审查速度时，软件质量保证应该如何变化？
+    * 软件工程的基本单位是否会从“代码”转向“规格、约束、测试和反馈”？
+    * 当 agent 可以自主修改大型代码库时，我们应该如何重新理解 abstraction、ownership 和 trust？
+
+    1. 经典软件工程 × 生成式 AI
+
+    选择 5–8 个经典软件工程思想，例如：
+
+    abstraction、specification、modularity、testing、verification、code review、technical debt、software architecture、formal methods、DevOps。
+
+    分析生成式 AI 对它们分别产生了什么影响。
+
+    特别关注三类情况：
+
+    * 更重要了
+    * 重要性下降了
+    * 含义发生了变化
+
+    不要为了覆盖面而罗列；优先寻找反直觉的变化。
+
+    1. 阅读与探索路线
+
+    不要给庞大的 bibliography。
+
+    只推荐约 10–15 个真正值得投入时间的材料，可以包括：
+
+    * 经典论文
+    * 最近的重要论文
+    * influential blog / essay
+    * 系统或项目
+    * 值得实际体验的工具
+
+    对每一个推荐，用 1–3 句话解释：
+
+    为什么值得看，以及应该带着什么问题去看。
+
+    1. 教授的判断
+
+    最后暂时离开“教材式”的中立口吻。
+
+    假设你真的要负责设计这门课程，请给出你的判断：
+
+    * 哪些现在非常热门的话题其实不值得占用太多课程时间？
+    * 哪些目前被低估的问题反而应该成为课程核心？
+    * 哪些知识可能 2–3 年就过时？
+    * 哪些思想即使模型能力继续大幅提高，仍然值得学习？
+    * 如果整门课只能让学生真正理解三个思想，你会选择哪三个？为什么？
+
+    ⸻
+
+    调研要求
+
+    优先参考：
+
+    1. 软件工程与编程语言领域的重要经典工作；
+    2. 近年的生成式 AI / coding agent / AI-assisted software engineering 研究；
+    3. 真实大型软件工程实践，而不仅仅是 benchmark；
+    4. 对当前范式提出批评或不同观点的材料。
+
+    区分：
+
+    * 已经有较强证据支持的结论；
+    * 工业界经验性判断；
+    * 合理但尚未验证的推测。
+
+    如果不同来源存在明显分歧，不要强行总结成一个共识，而是指出分歧。
+
+    最终目标不是“全面”，而是让我读完以后能够形成一个关于 Generative Software Engineering 的 mental model。
 chart:
   id: productivity
   height: 420
   option:
-    {
-      "textStyle": {
-        "fontFamily": "inherit"
-      },
-      "grid": {
-        "left": 14,
-        "right": 72,
-        "top": 14,
-        "bottom": 10,
-        "containLabel": true
-      },
-      "tooltip": {
-        "trigger": "item"
-      },
-      "xAxis": {
-        "type": "value",
-        "min": -25,
-        "max": 70,
-        "axisLabel": {
-          "formatter": "{value}%"
-        }
-      },
-      "yAxis": {
-        "type": "category",
-        "inverse": true,
-        "data": [
-          "Peng et al. 2023 · RCT｜隔离小任务 · 完成速度",
-          "Cui et al. 2025 · 三企业田野｜PR 数量",
-          "GitHub×Accenture 2024 · 企业 RCT｜PR 合并量",
-          "DORA 2024 · 全球调查｜自评生产率（每 +25% 采纳）",
-          "DORA 2024 · 全球调查｜组织交付吞吐（每 +25% 采纳）",
-          "METR 2025 · 对照实验｜资深维护者 · 完成速度"
-        ],
-        "axisTick": {
-          "show": false
-        },
-        "axisLine": {
-          "show": false
-        }
-      },
-      "series": [
-        {
-          "type": "bar",
-          "barWidth": "54%",
-          "data": [
-            {
-              "value": 55.8,
-              "label": {
-                "show": true,
-                "position": "right",
-                "formatter": "+55.8%",
-                "color": "#31614F"
-              },
-              "itemStyle": {
-                "color": "#31614F",
-                "borderRadius": [
-                  0,
-                  3,
-                  3,
-                  0
-                ]
-              }
-            },
-            {
-              "value": 26.0,
-              "label": {
-                "show": true,
-                "position": "right",
-                "formatter": "+26.0%",
-                "color": "#31614F"
-              },
-              "itemStyle": {
-                "color": "#31614F",
-                "borderRadius": [
-                  0,
-                  3,
-                  3,
-                  0
-                ]
-              }
-            },
-            {
-              "value": 8.7,
-              "label": {
-                "show": true,
-                "position": "right",
-                "formatter": "+8.7%",
-                "color": "#31614F"
-              },
-              "itemStyle": {
-                "color": "#31614F",
-                "borderRadius": [
-                  0,
-                  3,
-                  3,
-                  0
-                ]
-              }
-            },
-            {
-              "value": 2.1,
-              "label": {
-                "show": true,
-                "position": "right",
-                "formatter": "+2.1%",
-                "color": "#31614F"
-              },
-              "itemStyle": {
-                "color": "#31614F",
-                "borderRadius": [
-                  0,
-                  3,
-                  3,
-                  0
-                ]
-              }
-            },
-            {
-              "value": -1.5,
-              "label": {
-                "show": true,
-                "position": "right",
-                "formatter": "−1.5%",
-                "color": "#A8442A"
-              },
-              "itemStyle": {
-                "color": "#A8442A",
-                "borderRadius": [
-                  3,
-                  0,
-                  0,
-                  3
-                ]
-              }
-            },
-            {
-              "value": -19.0,
-              "label": {
-                "show": true,
-                "position": "right",
-                "formatter": "−19.0%",
-                "color": "#A8442A"
-              },
-              "itemStyle": {
-                "color": "#A8442A",
-                "borderRadius": [
-                  3,
-                  0,
-                  0,
-                  3
-                ]
-              }
-            }
-          ],
-          "markLine": {
-            "symbol": "none",
-            "silent": true,
-            "label": {
-              "show": false
-            },
-            "lineStyle": {
-              "width": 1.5
-            },
-            "data": [
-              {
-                "xAxis": 0
-              }
-            ]
-          }
-        }
-      ]
-    }
+    textStyle:
+      fontFamily: inherit
+    grid:
+      left: 14
+      right: 72
+      top: 14
+      bottom: 10
+      containLabel: true
+    tooltip:
+      trigger: item
+    xAxis:
+      type: value
+      min: -25
+      max: 70
+      axisLabel:
+        formatter: "{value}%"
+    yAxis:
+      type: category
+      inverse: true
+      data:
+        - Peng et al. 2023 · RCT｜隔离小任务 · 完成速度
+        - Cui et al. 2025 · 三企业田野｜PR 数量
+        - GitHub×Accenture 2024 · 企业 RCT｜PR 合并量
+        - DORA 2024 · 全球调查｜自评生产率（每 +25% 采纳）
+        - DORA 2024 · 全球调查｜组织交付吞吐（每 +25% 采纳）
+        - METR 2025 · 对照实验｜资深维护者 · 完成速度
+      axisTick:
+        show: false
+      axisLine:
+        show: false
+    series:
+      - type: bar
+        barWidth: 54%
+        data:
+          - value: 55.8
+            label:
+              show: true
+              position: right
+              formatter: +55.8%
+              color: "#31614F"
+            itemStyle:
+              color: "#31614F"
+              borderRadius:
+                - 0
+                - 3
+                - 3
+                - 0
+          - value: 26
+            label:
+              show: true
+              position: right
+              formatter: +26.0%
+              color: "#31614F"
+            itemStyle:
+              color: "#31614F"
+              borderRadius:
+                - 0
+                - 3
+                - 3
+                - 0
+          - value: 8.7
+            label:
+              show: true
+              position: right
+              formatter: +8.7%
+              color: "#31614F"
+            itemStyle:
+              color: "#31614F"
+              borderRadius:
+                - 0
+                - 3
+                - 3
+                - 0
+          - value: 2.1
+            label:
+              show: true
+              position: right
+              formatter: +2.1%
+              color: "#31614F"
+            itemStyle:
+              color: "#31614F"
+              borderRadius:
+                - 0
+                - 3
+                - 3
+                - 0
+          - value: -1.5
+            label:
+              show: true
+              position: right
+              formatter: −1.5%
+              color: "#A8442A"
+            itemStyle:
+              color: "#A8442A"
+              borderRadius:
+                - 3
+                - 0
+                - 0
+                - 3
+          - value: -19
+            label:
+              show: true
+              position: right
+              formatter: −19.0%
+              color: "#A8442A"
+            itemStyle:
+              color: "#A8442A"
+              borderRadius:
+                - 3
+                - 0
+                - 0
+                - 3
+        markLine:
+          symbol: none
+          silent: true
+          label:
+            show: false
+          lineStyle:
+            width: 1.5
+          data:
+            - xAxis: 0
 ---
 
+{% include ai-generation-meta.html %}
 
 ## 00 导读：一个不对称，一张图
 

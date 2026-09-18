@@ -1,0 +1,100 @@
+---
+---
+
+@use 'abstracts/variables' with (
+  $theme: '{{ site.theme_mode }}'
+);
+
+/* prettier-ignore */
+@use 'main
+{%- if jekyll.environment == 'production' -%}
+  .bundle
+{%- endif -%}
+';
+
+/* AI generation metadata */
+
+.ai-generation-meta {
+  margin: 0 0 1.5rem;
+  overflow: hidden;
+  background: var(--card-bg);
+  border: 1px solid var(--main-border-color);
+  border-radius: 0.5rem;
+}
+
+.ai-generation-meta > summary {
+  padding: 0.8rem 1rem;
+  color: var(--heading-color);
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+}
+
+.ai-generation-meta > summary::marker {
+  color: var(--link-color);
+}
+
+.ai-generation-meta > summary:hover {
+  background: var(--sidebar-hover-bg);
+}
+
+.ai-generation-meta > summary:focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: -2px;
+  border-radius: 0.5rem;
+}
+
+.ai-generation-meta[open] > summary {
+  border-bottom: 1px solid var(--main-border-color);
+}
+
+.ai-generation-meta__model,
+.ai-generation-meta__conversation {
+  display: flex;
+  gap: 0.75rem;
+  align-items: baseline;
+  padding: 0.9rem 1rem 0;
+}
+
+.ai-generation-meta__model > strong,
+.ai-generation-meta__conversation > strong {
+  flex-shrink: 0;
+}
+
+.ai-generation-meta__model > code {
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.ai-generation-meta__model + .ai-generation-meta__conversation {
+  padding-top: 0.55rem;
+}
+
+.ai-generation-meta__model:last-child,
+.ai-generation-meta__conversation:last-child {
+  padding-bottom: 0.9rem;
+}
+
+.ai-generation-meta__conversation > a {
+  overflow-wrap: anywhere;
+}
+
+.ai-generation-meta__prompt {
+  margin: 0.9rem 1rem 1rem;
+}
+
+.ai-generation-meta__prompt .highlighter-rouge {
+  margin-bottom: 0;
+}
+
+.ai-generation-meta__prompt .code-header > button:focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: -2px;
+}
+
+.ai-generation-meta__prompt .rouge-code > pre {
+  max-height: 24rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
