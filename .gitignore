@@ -22,10 +22,10 @@ package-lock.json
 !.vscode/extensions.json
 
 # Misc
-_sass/dist
+_sass/vendors
 assets/js/dist
 
-CLAUDE.md
+AGENTS.md
 .claude
 .DS_Store
 .ruby-version
