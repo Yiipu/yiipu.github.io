@@ -1,0 +1,6 @@
+# 注册驱动：由 .github/workflows/register-script.yml 按 key upsert（新条目追加到末尾，被替换条目原位更新）。
+# 顺序即 about 页展示顺序，可手动调整；下线某脚本直接删除对应行。
+# 每行一个条目（紧凑 JSON，与 workflow 生成格式一致）；greasyfork 留空字符串表示未发布到 greasyfork.org。
+- {"key":"battlenet_auto_oauth","title":"战网自动填充在线版令牌","desc":"自动填充令牌。","install":"https://raw.githubusercontent.com/Yiipu/greasyfork/main/battlenet_auto_oauth.user.js","repo":"https://github.com/Yiipu/greasyfork/blob/main/battlenet_auto_oauth.user.js","greasyfork":""}
+- {"key":"douyin-emoji-downloader","title":"抖音收藏表情包批量下载","desc":"打开私信表情面板后，一键采集并下载所有收藏表情包","install":"https://raw.githubusercontent.com/Yiipu/greasyfork/main/douyin-emoji-downloader.user.js","repo":"https://github.com/Yiipu/greasyfork/blob/main/douyin-emoji-downloader.user.js","greasyfork":""}
+- {"key":"hust-campus-login","title":"HUST 校园网自动登录 + 账号切换","desc":"本地（❗明文❗）保存账号密码，支持自动登录、一键切换账号。","install":"https://raw.githubusercontent.com/Yiipu/greasyfork/main/hust-campus-login.user.js","repo":"https://github.com/Yiipu/greasyfork/blob/main/hust-campus-login.user.js","greasyfork":"https://greasyfork.org/scripts/536201"}

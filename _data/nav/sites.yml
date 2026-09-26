@@ -1,0 +1,4 @@
+# 机器生成：由 .github/workflows/scan-pages.yml 整文件重写，请勿手改。
+# 顺序（字母序）即 about 页展示顺序；个性化在 _data/nav/overrides.yml 按 key 配置。
+- {"key":"reply-words","title":"reply-words","url":"https://yiipu.github.io/reply-words/","desc":"回复词库 - 快捷回复语生成器","repo":"https://github.com/Yiipu/reply-words"}
+- {"key":"surrender-to-ai","title":"surrender-to-ai","url":"https://yiipu.github.io/surrender-to-ai/","desc":"✍️🔗🏳️📜，🗣️🤖💀📜","repo":"https://github.com/Yiipu/surrender-to-ai"}

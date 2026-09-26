@@ -8,6 +8,8 @@ order: 4
 
 > 文章可能有误，请注意辨别🧐! 如果你发现了错误, 欢迎在文章底部留下评论, 或以其他方式[联系我](#contact). 
 
+{% include nav.html %}
+
 <h2 id="contact">Contact ✉ | 联系方式</h2>
 
 你可以在页面的 Tab 栏底部找到我的联系方式.

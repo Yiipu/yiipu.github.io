@@ -1,0 +1,8 @@
+# 人工策展层：按 key 覆盖/补充导航条目；文件留空或删除均安全（include 已做 nil 防护）。
+# 可用字段：icon（Font Awesome 类名）、title、note（覆盖描述文本）、hide: true（隐藏条目）。
+sites:
+  reply-words:
+    icon: fas fa-keyboard
+  surrender-to-ai:
+    icon: fas fa-robot
+scripts: {}

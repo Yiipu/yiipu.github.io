@@ -1,0 +1,63 @@
+name: "Scan Pages Sites"
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# 手动触发的扫描：重扫所有公开仓库并整文件重写 _data/nav/sites.yml，
+# commit 到 main 后由 pages-deploy.yml 自动重建上线。
+concurrency:
+  group: "scan-pages"
+  cancel-in-progress: true
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Scan GitHub Pages sites and regenerate _data/nav/sites.yml
+        env:
+          GH_TOKEN: ${{ github.token }}
+          OWNER: Yiipu
+        run: |
+          set -euo pipefail
+          DATA='_data/nav/sites.yml'
+          mkdir -p "$(dirname "$DATA")"
+
+          # 公开仓库列表；GITHUB_TOKEN 仅用于提高限额。单页 100 个仓库足够，超出再扩分页。
+          repos="$(curl -fsSL --max-time 30 \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            "https://api.github.com/users/${OWNER}/repos?per_page=100&sort=full_name")"
+
+          {
+            echo '# 机器生成：由 .github/workflows/scan-pages.yml 整文件重写，请勿手改。'
+            echo '# 顺序（字母序）即 about 页展示顺序；个性化在 _data/nav/overrides.yml 按 key 配置。'
+            printf '%s\n' "$repos" | jq -r '
+              [ .[]
+                | select(.fork == false and .archived == false and .has_pages == true
+                         and .name != "yiipu.github.io")
+                | { key: .name,
+                    title: .name,
+                    url: ("https://yiipu.github.io/" + .name + "/"),
+                    desc: (.description // ""),
+                    repo: .html_url } ]
+              | sort_by(.key)[]
+              | "- " + (. | tojson)'
+          } > "$DATA"
+
+      - name: Commit and push
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _data/nav/sites.yml
+          if git diff --cached --quiet; then
+            echo "No changes to sites.yml"
+          else
+            git commit -m "chore(nav): refresh pages index (scan)"
+            git push
+          fi

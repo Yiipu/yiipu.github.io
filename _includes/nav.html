@@ -1,0 +1,70 @@
+{% comment %}
+  About 页导航区：渲染 _data/nav/{sites,scripts,overrides}.yml
+  - sites.yml：scan-pages.yml 生成；scripts.yml：register-script.yml 维护；overrides.yml：人工策展
+  - 区块空数据时整体隐藏；overrides 按 key 提供 icon / title / note / hide
+  - 数据在写入侧已校验（拒绝 <>&"' 与反斜杠），Liquid 不转义，勿放宽写入校验
+{% endcomment %}
+{% assign nav_sites = site.data.nav.sites %}
+{% assign nav_scripts = site.data.nav.scripts %}
+{% assign nav_over = site.data.nav.overrides %}
+{% if nav_sites.size > 0 or nav_scripts.size > 0 %}
+<div class="about-nav mt-4">
+  <h2 id="nav">导航 🧭 | 其他入口</h2>
+  {% if nav_sites.size > 0 %}
+    <h3 id="nav-sites">其他站点 🌐</h3>
+    <div class="row row-cols-1 row-cols-md-2 g-3">
+      {% for item in nav_sites %}
+        {% assign ov = nav_over.sites[item.key] %}
+        {% unless ov.hide %}
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <h3 class="h5 card-title mb-1">
+                <i class="{% if ov.icon %}{{ ov.icon }}{% else %}fas fa-link{% endif %} me-1"></i>
+                <a href="{{ item.url }}" target="_blank" rel="noopener">{{ ov.title | default: item.title }}</a>
+              </h3>
+              {% assign d = ov.note | default: item.desc %}
+              {% if d and d != "" %}<p class="card-text mb-0 text-secondary">{{ d }}</p>{% endif %}
+            </div>
+          </div>
+        </div>
+        {% endunless %}
+      {% endfor %}
+    </div>
+  {% endif %}
+  {% if nav_scripts.size > 0 %}
+    <h3 id="nav-userscripts" class="{% if nav_sites.size > 0 %}mt-4{% endif %}">油猴脚本 🐵</h3>
+    <div class="row row-cols-1 row-cols-md-2 g-3">
+      {% for item in nav_scripts %}
+        {% assign ov = nav_over.scripts[item.key] %}
+        {% unless ov.hide %}
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <h3 class="h5 card-title mb-1">
+                <i class="{% if ov.icon %}{{ ov.icon }}{% else %}fas fa-scroll{% endif %} me-1"></i>
+                {% if item.greasyfork and item.greasyfork != "" %}
+                  <a href="{{ item.greasyfork }}" target="_blank" rel="noopener">{{ ov.title | default: item.title }}</a>
+                {% else %}
+                  <a href="{{ item.repo }}" target="_blank" rel="noopener">{{ ov.title | default: item.title }}</a>
+                {% endif %}
+              </h3>
+              {% assign d = ov.note | default: item.desc %}
+              {% if d and d != "" %}<p class="card-text mb-0 text-secondary">{{ d }}</p>{% endif %}
+            </div>
+            <div class="card-footer bg-transparent border-0 pt-0">
+              <a class="btn btn-sm btn-outline-primary" href="{{ item.install }}" target="_blank" rel="noopener">
+                <i class="fas fa-download me-1"></i>安装
+              </a>
+              {% if item.greasyfork and item.greasyfork != "" %}
+              <a class="btn btn-sm btn-outline-secondary" href="{{ item.repo }}" target="_blank" rel="noopener">源码</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endunless %}
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
+{% endif %}
