@@ -1,7 +1,7 @@
 name: "Register Userscript Nav"
 
 on:
-  # greasyfork 仓库的 update-readme 流程推送注册事件（client_payload: file, greasyfork?）
+  # greasyfork 仓库的 update-readme 流程推送注册事件（client_payload: files 数组，兼容旧单文件 file）
   repository_dispatch:
     types: [register-script]
   # 手动兜底/修复：填脚本文件名，可选 Greasy Fork 页面 URL
@@ -26,6 +26,7 @@ concurrency:
 
 # payload 经 env 间接引用，避免 GitHub Actions 脚本注入
 env:
+  PAYLOAD_FILES: ${{ github.event.client_payload.files }}
   PAYLOAD_FILE: ${{ github.event.client_payload.file }}
   PAYLOAD_GF: ${{ github.event.client_payload.greasyfork }}
   INPUT_FILE: ${{ inputs.script_file }}
@@ -39,101 +40,102 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
-      - name: Validate inputs and fetch userscript metadata
-        id: meta
-        run: |
-          set -euo pipefail
-          file="$PAYLOAD_FILE"; gf="$PAYLOAD_GF"
-          if [ "$EVENT_NAME" != "repository_dispatch" ]; then
-            file="$INPUT_FILE"; gf="$INPUT_GF"
-          fi
-
-          file="$(printf '%s' "$file" | tr -d '[:space:]')"
-          gf="$(printf '%s' "$gf" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
-
-          case "$file" in
-            *.user.js) : ;;
-            *) echo "::error::script_file 必须以 .user.js 结尾：${file}" ; exit 1 ;;
-          esac
-          if ! printf '%s' "$file" | grep -Eq '^[a-z0-9][a-z0-9._-]*\.user\.js$'; then
-            echo "::error::非法文件名：${file}" ; exit 1
-          fi
-          key="${file%.user.js}"
-
-          if [ -n "$gf" ]; then
-            case "$gf" in
-              https://greasyfork.org/scripts/[0-9]*|https://greasyfork.org/*/scripts/[0-9]*) : ;;
-              *) echo "::error::greasyfork_url 不合法：${gf}" ; exit 1 ;;
-            esac
-          fi
-
-          raw="https://raw.githubusercontent.com/Yiipu/greasyfork/main/${file}"
-          meta="$(curl -fsSL --max-time 30 "$raw" | tr -d '\r')" \
-            || { echo "::error::拉取失败：${raw}（文件不存在？）" ; exit 1 ; }
-          title="$(printf '%s\n' "$meta" | sed -nE 's?^//[[:space:]]*@name[[:space:]]+(.+)$?\1?p' | head -n1)"
-          desc="$(printf '%s\n' "$meta" | sed -nE 's?^//[[:space:]]*@description[[:space:]]+(.+)$?\1?p' | head -n1)"
-          [ -n "$title" ] || { echo "::error::未在 ${file} 中找到 @name" ; exit 1 ; }
-          [ -n "$desc" ] || desc="暂无描述"
-
-          # Liquid 不转义 HTML，渲染进 about 页的字段必须干净
-          bad='[<>&"'\''\\]'
-          for v in "$title" "$desc"; do
-            if printf '%s' "$v" | grep -Eq "$bad"; then
-              echo "::error::字段含非法字符（<>&\"'\\）：${v}" ; exit 1
-            fi
-          done
-
-          {
-            echo "key=${key}"
-            echo "title=${title}"
-            echo "desc=${desc}"
-            echo "install=${raw}"
-            echo "repo=https://github.com/Yiipu/greasyfork/blob/main/${file}"
-            echo "greasyfork=${gf}"
-          } >> "$GITHUB_OUTPUT"
-
-      - name: Upsert _data/nav/scripts.yml
-        env:
-          KEY: ${{ steps.meta.outputs.key }}
-          TITLE: ${{ steps.meta.outputs.title }}
-          DESC: ${{ steps.meta.outputs.desc }}
-          INSTALL: ${{ steps.meta.outputs.install }}
-          REPO: ${{ steps.meta.outputs.repo }}
-          GF: ${{ steps.meta.outputs.greasyfork }}
+      - name: Register userscripts
         run: |
           set -euo pipefail
           DATA='_data/nav/scripts.yml'
           touch "$DATA"
-          # 移除同 key 旧条目（key 已过 ^[a-z0-9._-]+$ 校验，这里转义 . 后精确匹配）
-          esc="$(printf '%s' "$KEY" | sed 's/\./\\./g')"
-          # jq -cn 直接输出紧凑 JSON（jq 与 jaq 行为一致；不要用 `| tojson`，jaq 下会双重编码）
-          entry="$(jq -cn \
-            --arg key "$KEY" --arg title "$TITLE" --arg desc "$DESC" \
-            --arg install "$INSTALL" --arg repo "$REPO" --arg gf "$GF" \
-            '{key:$key, title:$title, desc:$desc, install:$install, repo:$repo, greasyfork:$gf}')"
-          NEWLINE="- ${entry}"
-          export NEWLINE
-          # 已存在则原位替换（重复注册幂等：内容不变则文件字节不变），否则追加到末尾
-          n="$( (grep -En -- "- \{\"key\":[[:space:]]*\"${esc}\"" "$DATA" || true) | head -n1 | cut -d: -f1)"
-          if [ -n "$n" ]; then
-            awk -v n="$n" 'NR==n{print ENVIRON["NEWLINE"]; next}{print}' "$DATA" > "${DATA}.tmp"
-          else
-            cp "$DATA" "${DATA}.tmp"
-            printf '%s\n' "$NEWLINE" >> "${DATA}.tmp"
-          fi
-          mv "${DATA}.tmp" "$DATA"
 
-      - name: Commit and push
-        env:
-          KEY: ${{ steps.meta.outputs.key }}
-        run: |
-          set -euo pipefail
+          # 组装待注册文件列表：批量 payload.files > 兼容旧单文件 payload.file > 手动表单
+          if [ "$EVENT_NAME" = "repository_dispatch" ]; then
+            files=""
+            if [ -n "$PAYLOAD_FILES" ]; then
+              files="$(printf '%s' "$PAYLOAD_FILES" | jq -r 'if type=="array" then .[] elif type=="string" then . else empty end' || true)"
+            fi
+            [ -n "$files" ] || files="$PAYLOAD_FILE"
+            gf_in="$PAYLOAD_GF"
+          else
+            files="$INPUT_FILE"
+            gf_in="$INPUT_GF"
+          fi
+          [ -n "$files" ] || { echo "::error::payload 缺少 files/file" ; exit 1 ; }
+
+          fail=0
+          for file in $files; do
+            file="$(printf '%s' "$file" | tr -d '[:space:]')"
+            case "$file" in
+              *.user.js) : ;;
+              *) echo "::error::跳过（必须以 .user.js 结尾）：${file}" ; fail=1 ; continue ;;
+            esac
+            if ! printf '%s' "$file" | grep -Eq '^[a-z0-9][a-z0-9._-]*\.user\.js$'; then
+              echo "::error::跳过（非法文件名）：${file}" ; fail=1 ; continue
+            fi
+            key="${file%.user.js}"
+
+            gf="$(printf '%s' "$gf_in" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
+            if [ -n "$gf" ]; then
+              case "$gf" in
+                https://greasyfork.org/scripts/[0-9]*|https://greasyfork.org/*/scripts/[0-9]*) : ;;
+                *) echo "::error::跳过（greasyfork_url 不合法）：${gf}" ; fail=1 ; continue ;;
+              esac
+            fi
+
+            raw="https://raw.githubusercontent.com/Yiipu/greasyfork/main/${file}"
+            meta="$(curl -fsSL --max-time 30 "$raw" | tr -d '\r')" \
+              || { echo "::error::跳过（拉取失败）：${raw}" ; fail=1 ; continue ; }
+            title="$(printf '%s\n' "$meta" | sed -nE 's?^//[[:space:]]*@name[[:space:]]+(.+)$?\1?p' | head -n1)"
+            desc="$(printf '%s\n' "$meta" | sed -nE 's?^//[[:space:]]*@description[[:space:]]+(.+)$?\1?p' | head -n1)"
+            [ -n "$title" ] || { echo "::error::跳过（未找到 @name）：${file}" ; fail=1 ; continue ; }
+            [ -n "$desc" ] || desc="暂无描述"
+
+            # Liquid 不转义 HTML，渲染进 about 页的字段必须干净
+            bad='[<>&"'\''\\]'
+            ok=1
+            for v in "$title" "$desc"; do
+              if printf '%s' "$v" | grep -Eq "$bad"; then
+                echo "::error::跳过（字段含非法字符 <>&\"'\\）：${v}" ; ok=0 ; break
+              fi
+            done
+            [ "$ok" = 1 ] || { fail=1 ; continue ; }
+
+            esc="$(printf '%s' "$key" | sed 's/\./\\./g')"
+            # greasyfork 字段保留：payload 未提供时沿用已有非空值，人工登记不因自动重注册丢失
+            if [ -z "$gf" ]; then
+              line="$( (grep -E -- "- \{\"key\":[[:space:]]*\"${esc}\"" "$DATA" || true) | head -n1 )"
+              if [ -n "$line" ]; then
+                gf="$(printf '%s' "$line" | grep -Eo '"greasyfork":"[^"]*"' | head -n1 \
+                  | sed -e 's/^"greasyfork":"//' -e 's/"$//')"
+              fi
+            fi
+
+            # jq -cn 直接输出紧凑 JSON（jq 与 jaq 行为一致；不要用 `| tojson`，jaq 下会双重编码）
+            entry="$(jq -cn \
+              --arg key "$key" --arg title "$title" --arg desc "$desc" \
+              --arg install "$raw" --arg repo "https://github.com/Yiipu/greasyfork/blob/main/${file}" \
+              --arg gf "$gf" \
+              '{key:$key, title:$title, desc:$desc, install:$install, repo:$repo, greasyfork:$gf}')"
+            NEWLINE="- ${entry}"
+            export NEWLINE
+            # 已存在则原位替换（重复注册幂等：内容不变则文件字节不变），否则追加到末尾
+            n="$( (grep -En -- "- \{\"key\":[[:space:]]*\"${esc}\"" "$DATA" || true) | head -n1 | cut -d: -f1)"
+            if [ -n "$n" ]; then
+              awk -v n="$n" 'NR==n{print ENVIRON["NEWLINE"]; next}{print}' "$DATA" > "${DATA}.tmp"
+            else
+              cp "$DATA" "${DATA}.tmp"
+              printf '%s\n' "$NEWLINE" >> "${DATA}.tmp"
+            fi
+            mv "${DATA}.tmp" "$DATA"
+            echo "registered: ${key}"
+          done
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add _data/nav/scripts.yml
+          git add "$DATA"
           if git diff --cached --quiet; then
             echo "No changes to scripts.yml"
           else
-            git commit -m "chore(nav): register userscript ${KEY}"
+            git commit -m "chore(nav): register userscript(s)"
             git push
           fi
+          # 个别文件失败不阻塞其余注册，但 run 标红提示
+          [ "$fail" = 0 ] || exit 1
