@@ -24,11 +24,11 @@ concurrency:
   group: "register-script"
   cancel-in-progress: false
 
-# payload 经 env 间接引用，避免 GitHub Actions 脚本注入
+# payload 经 env 间接引用，避免 GitHub Actions 脚本注入。
+# 注意：env 模板求值结果必须是标量——数组要用 toJSON 包一层，直接绑定 ${{ ...payload.files }}
+# 会在 repository_dispatch 上报 "A sequence was not expected"。
 env:
-  PAYLOAD_FILES: ${{ github.event.client_payload.files }}
-  PAYLOAD_FILE: ${{ github.event.client_payload.file }}
-  PAYLOAD_GF: ${{ github.event.client_payload.greasyfork }}
+  PAYLOAD_JSON: ${{ toJSON(github.event.client_payload) }}
   INPUT_FILE: ${{ inputs.script_file }}
   INPUT_GF: ${{ inputs.greasyfork_url }}
   EVENT_NAME: ${{ github.event_name }}
@@ -49,11 +49,12 @@ jobs:
           # 组装待注册文件列表：批量 payload.files > 兼容旧单文件 payload.file > 手动表单
           if [ "$EVENT_NAME" = "repository_dispatch" ]; then
             files=""
-            if [ -n "$PAYLOAD_FILES" ]; then
-              files="$(printf '%s' "$PAYLOAD_FILES" | jq -r 'if type=="array" then .[] elif type=="string" then . else empty end' || true)"
+            gf_in=""
+            if [ -n "$PAYLOAD_JSON" ] && [ "$PAYLOAD_JSON" != "null" ]; then
+              files="$(printf '%s' "$PAYLOAD_JSON" | jq -r 'if type=="object" and (.files|type)=="array" then .files[] else empty end' || true)"
+              [ -n "$files" ] || files="$(printf '%s' "$PAYLOAD_JSON" | jq -r 'if type=="object" then (.file // empty) else empty end' || true)"
+              gf_in="$(printf '%s' "$PAYLOAD_JSON" | jq -r 'if type=="object" then (.greasyfork // empty) else empty end' || true)"
             fi
-            [ -n "$files" ] || files="$PAYLOAD_FILE"
-            gf_in="$PAYLOAD_GF"
           else
             files="$INPUT_FILE"
             gf_in="$INPUT_GF"
