@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# pre-commit：生产模式构建 + 模版 CSS 类校验
+# 防护：模版引用的 Bootstrap 工具类在线上裁剪版 bundle 缺失（如 nav 卡 g-3 间距事故）
+# 首次启用：git config core.hooksPath tools/githooks
+set -euo pipefail
+cd "$(git rev-parse --show-toplevel)"
+tmp="$(mktemp -d)"
+trap 'rm -rf "$tmp"' EXIT
+JEKYLL_ENV=production bundle exec jekyll b -d "$tmp/site" --quiet >/dev/null
+python3 tools/check_css_classes.py "$tmp/site/assets/css/jekyll-theme-chirpy.css"
