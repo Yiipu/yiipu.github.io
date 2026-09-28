@@ -45,20 +45,6 @@ $ bundle
 
 Please see the [theme's docs](https://github.com/cotes2020/jekyll-theme-chirpy#documentation).
 
-## 本地开发与校验
-
-- 本地预览一律使用生产环境（与线上相同走 bundle CSS，避免 dev 模式的 CDN 全量
-  Bootstrap 掩盖裁剪版缺类问题）：
-
-  ```console
-  $ tools/preview.sh
-  ```
-
-- pre-commit 钩子：每次提交先做生产模式构建，再校验「模版引用的 CSS 类 ⊆ 构建 CSS」。
-  首次启用执行 `git config core.hooksPath tools/githooks`。
-- CI（pages-deploy）在 htmlproofer 之前运行同一校验：`tools/check_css_classes.py`；
-  站点自定义类（非 Bootstrap）登记在 `tools/css-class-allowlist.txt`。
-
 ## Contributing
 
 The contents of this repository are automatically updated when new releases are made to the [main repository][chirpy].  
