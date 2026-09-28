@@ -98,3 +98,31 @@
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
+
+/* --- Bootstrap 工具类补丁 --------------------------------------------
+   Chirpy gem 内置的是裁剪版 Bootstrap（_sass/vendors/_bootstrap.scss），
+   本地开发走 CDN 全量 bootstrap@5，导致 _includes/nav.html 用到的部分
+   工具类本地有样式、生产 bundle 缺失。以下对照 Bootstrap 5.3.x 补齐。 */
+.g-3 {
+  --bs-gutter-x: 1rem;
+  --bs-gutter-y: 1rem;
+}
+
+.text-secondary {
+  color: #6c757d;
+}
+
+.bg-transparent {
+  background-color: transparent !important;
+}
+
+.border-0 {
+  border: 0 !important;
+}
+
+.card-footer {
+  padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);
+  color: var(--bs-card-cap-color, inherit);
+  background-color: var(--bs-card-bg, transparent);
+  border-top: var(--bs-card-border-width, 1px) solid var(--bs-card-border-color, transparent);
+}
